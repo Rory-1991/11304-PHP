@@ -6,27 +6,39 @@
     <title>BMI結果</title>
 </head>
 <body>
+<?php
+
+if(isset($_GET['height'])){
+    $height=$_GET['height'];
+}else if(isset($_POST['height'])){
+    $height=$_POST['height'];
+}else{
+    echo "請使用正確管道進到此頁面!";
+    exit();
+}
+if(isset($_GET['weight'])){
+    $weight=$_GET['weight'];
+}else if(isset($_POST['weight'])){
+    $weight=$_POST['weight'];
+}else{
+    echo "請使用正確管道進到此頁面!";
+    exit();
+}
+
+?>
 
 <h1>BMI結果</h1>    
-<div>你的身高:<?=$_GET['height'];?>公分</div>
+<div>你的身高:<?=$height;?>公分</div>
 <!-- 表單的值來自'name' -->
-<div>你的體重:<?=$_GET['weight'];?>公斤</div>
+<div>你的體重:<?=$weight;?>公斤</div>
 <!-- <?=$_GET[''];?> GET前一定要加_底線，GET必須是大寫-->
  <?php
 
-$h=$_GET['height']/100;
-$bmi=round($_GET['weight']/($h * $h),2);
+
+$height= $height/100;
+$bmi=round($weight/($height * $height),2);
 // $bmi=round小數點後($_GET['height']/($h * $h),2第二位)
 
-/* if ($bmi < 18.5) {
-    $category = "體重過輕";
-} elseif ($bmi >= 18.5 && $bmi < 24) {
-    $category = "健康體重";
-} elseif ($bmi >= 24 && $bmi < 27) {
-    $category = "體重過重";
-} else {
-    $category = "肥胖";
-} */
 
 if($bmi<18.5){
     $level="體重過輕";
@@ -43,11 +55,12 @@ if($bmi<18.5){
 }
 
 
+
 ?>
 <div>你的BMI為:<?=$bmi;?></div>
 <div>體位判定為:<?=$level;?></div>
 <div>
-<a href="index.php">回首頁/重新量測</a>
+<a href="index.php?bmi=<?=$bmi;?>">回首頁/重新量測</a>
 
 </div>
 
