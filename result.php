@@ -60,7 +60,7 @@ if($bmi<18.5){
 <div>你的BMI為:<?=$bmi;?></div>
 <div>體位判定為:<?=$level;?></div>
 <div>
-<a href="index.php?bmi=<?=$bmi;?>">回首頁/重新量測</a>
+<a href="bmi.php?bmi=<?=$bmi;?>">回首頁/重新量測</a>
 
 </div>
 
