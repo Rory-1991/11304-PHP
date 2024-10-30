@@ -11,12 +11,18 @@
 <style>
     table{
         border-collapse:collapse;
-
+        /* background:rgb(<?=rand(50,2250);?>,<?=rand(200,150);?>,<?=rand(200,255);?>); */
+        /* 程式碼的部分輸出字串 */
+        margin:auto;
+        
     }
     td{
         padding:5px 10px;
         text-align: center;
         border:1px solid #999;
+        width: 65px;
+        
+
     }
     .holiday{
         background:pink;
@@ -30,6 +36,14 @@
         color:white;
         font-weight:bolder;
     }
+    .nav{
+        width: 688px;
+        margin:auto;
+    }
+    .nav table td{
+        border:0px;
+        padding:0;
+    }
 </style>
 
 <ul>
@@ -37,12 +51,7 @@
     <li>萬年曆都在同一個頁面同一個檔案</li>
     <li>有前年和來年的按鈕</li>
 </ul>
-<ul>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-</ul>
+
 <?php
 
 if(isset($_GET['month'])){
@@ -73,13 +82,40 @@ if($month+1>12){
     $nextYear=$year;
 }
 
+$spDate=['2024-11-07'=>"立冬",
+        '2024-11-22'=>"小雪"];
+$holidays = [
+    // 每年固定的節日就不需要年份
+'01-01' => "元旦",
+'02-10' => "農曆新年",
+'04-04' => "兒童節",
+'04-05' => "清明節",
+'05-01' => "勞動節",
+'06-10' => "端午節",
+'10-10' => "國慶日",
+];
 
 ?>
-<a href="">前年</a>
-<a href="calendar.php?year=<?=$prevYear;?>&month=<?=$prevMonth;?>">上一個月</a>
-<a href="calendar.php?year=<?=$nextYear;?>&month=<?=$nextMonth;?>">下一個月</a>
-<a href="">明年</a>
-<h3><?php echo date("{$month}月");?></h3>
+<div class='nav'>
+<table style="width:100%">
+    <tr>
+        <td style='text-align:left'>
+        <a href="">前年</a>
+        <a href="calendar.php?year=<?=$prevYear;?>&month=<?=$prevMonth;?>">上一個月</a>
+        </td>
+        <td>
+        <?php echo date("{$month}月");?>
+        </td>
+        <td style='text-align:right'>
+        <a href="calendar.php?year=<?=$nextYear;?>&month=<?=$nextMonth;?>">下一個月</a>
+        <a href="">明年</a>
+        </td>
+    </tr>
+</table>
+</div>
+    
+
+
 <table>
 <tr>
     <td></td>
@@ -93,7 +129,7 @@ if($month+1>12){
 </tr>
 <?php
 
-$firstDay="2024-{$month}-1";
+$firstDay="{$year}-{$month}-1";
 $firstDayTime=strtotime($firstDay);
 $firstDayWeek=date("w",$firstDayTime);
 
@@ -115,6 +151,14 @@ for($i=0;$i<6;$i++){
         
         echo "<td class='$isHoliday $theMonth $isToday'>";
         echo date("d",$theDayTime);
+        if(isset($spDate[date("Y-m-d",$theDayTime)])){
+            echo "<br>{$spDate[date("Y-m-d",$theDayTime)]}";
+        }
+        if(isset($holidays[date("m-d",$theDayTime)])){
+            echo "<br>{$holidays[date("m-d",$theDayTime)]}";
+              // 每年固定的節日就不需要年份
+        }
+
         echo "</td>";
         
     }
