@@ -62,7 +62,7 @@ if($acc=='admin' && $pw=='1234'){
 
 
     <!-- session -->
-   <!--  <?php 
+    <?php 
 session_start();
 if(!isset($_POST['acc'])){
     header("location:login.php");
@@ -81,10 +81,10 @@ if($acc=='admin' && $pw=='1234'){
     echo "帳密錯誤:登入失敗";
 
 }
-?> -->
+?>
 
 <!-- COOKIE -->
-<?php 
+<!-- <?php 
 
 if(!isset($_POST['acc'])){
     header("location:login.php");
@@ -105,7 +105,7 @@ if($acc=='admin' && $pw=='1234'){
 }
 
 
-?>
+?> -->
 
 </body>
 </html>
