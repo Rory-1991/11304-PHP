@@ -15,7 +15,7 @@ $pdo=new PDO($dsn, 'root','');
 
 $sql="select * from classes";
 $rows=$pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
-echo $rows[0]['tutor'];
+
 
 foreach($rows as $row){
     echo $row['id']."-".$row['name']."-".$row['tutor']."<br>";
