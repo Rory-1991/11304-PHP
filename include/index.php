@@ -9,7 +9,7 @@
 <body>
    
     <?php 
-    $title="index";
+    $header;
     $page= "index";
     include("common/navbar.php"); ?>
 
